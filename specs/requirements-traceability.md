@@ -1,8 +1,8 @@
 # LearnLab — Requirements Traceability
 
-Verification report. No existing document was changed to produce it. Gaps are listed at the end with proposed fixes; none has been applied.
+Verification report. Gaps and their status are listed at the end.
 
-Legend: ✅ present / covered · ⚠ partial or unexpected · ❌ missing or wrong
+Legend: ✅ present / covered · ⚠ partial, unexpected, or accepted deviation · ❌ missing or wrong
 
 ## Part A — Project structure
 
@@ -10,11 +10,11 @@ Legend: ✅ present / covered · ⚠ partial or unexpected · ❌ missing or wro
 
 | Path | Status | Note |
 |---|---|---|
-| README.md | ⚠ | Unexpected. Tracked since the initial commit; one line, "# Capstone-Project". |
+| README.md | ⚠ | Unexpected. Kept; replaced by the harness-generated README in sprint 1. |
 | docs/business-case.md | ✅ | |
 | docs/architecture.md | ✅ | v1 |
 | docs/tdd.md | ✅ | v1 |
-| docs/reference/AI Native Engineer Capstone - BC-011 LearnLab.pdf | ❌ | The file in the repo is a .md copy, not a PDF. It is tracked by git, and .git/info/exclude does not list it. |
+| docs/reference/AI Native Engineer Capstone - BC-011 LearnLab.pdf | ⚠ | Kept in the repo by the owner's decision. The repo holds a .md copy, not the local-only PDF, and it is tracked by git. |
 | specs/app_spec.md | ✅ | |
 | specs/course-authoring_spec.md | ✅ | |
 | specs/catalog_spec.md | ✅ | |
@@ -23,7 +23,7 @@ Legend: ✅ present / covered · ⚠ partial or unexpected · ❌ missing or wro
 | specs/instructor-workbench_spec.md | ✅ | |
 | specs/quiz-engine_spec.md | ✅ | |
 | specs/admin-console_spec.md | ✅ | |
-| specs/requirements-traceability.md | ✅ | This report. It did not exist before this run. |
+| specs/requirements-traceability.md | ✅ | This report. |
 | specs/sprints/sprint-1_prd.md | ✅ | |
 | specs/sprints/sprint-2_prd.md | ✅ | Draft. Status line present. |
 | specs/sprints/sprint-3_prd.md | ✅ | Draft. Status line present. |
@@ -59,7 +59,7 @@ Legend: ✅ present / covered · ⚠ partial or unexpected · ❌ missing or wro
 | AC-07 | Mark lesson complete; progress = completed / total | progress-tracker_spec.md → AC-07 | S2 | ✅ |
 | AC-08 | Lifecycle enforced; invalid transitions raise exception | catalog_spec.md → AC-08 | S1 | ✅ |
 | AC-09 | Instructor sees learner progress in four bands | instructor-workbench_spec.md → AC-09 | S3 | ✅ |
-| AC-10 | Admin manages catalog, approves courses, monitors analytics | admin-console_spec.md → AC-10 | S2 (see B7) | ✅ |
+| AC-10 | Admin manages catalog, approves courses, monitors analytics | admin-console_spec.md → AC-10 | S2 | ✅ |
 
 ### B2. Non-functional requirements (capstone Section 5.2)
 
@@ -72,9 +72,7 @@ Legend: ✅ present / covered · ⚠ partial or unexpected · ❌ missing or wro
 | NFR-05 | Migrations append-only | app_spec.md §6; architecture.md §6 | S1 (NFR-4) | ✅ |
 | NFR-06 | Structured JSON logs with correlation IDs | app_spec.md §6; architecture.md §6 | S1 (NFR-5) | ✅ |
 | NFR-07 | /health returns 200 within 1 s | app_spec.md §6 and §15; architecture.md §6 | S1 (NFR-6) | ✅ |
-| NFR-08 | Architecture rules enforced as tests (grading, progress access, published immutability) | app_spec.md §15 names the tests; architecture.md §2; tdd.md §4 | S1 (part, NFR-7); S2 (NFR-18); S3 (NFR-21) | ⚠ |
-
-NFR-08 is ⚠ because the sprint PRDs carry each rule as a behaviour, but not as an architecture test. Only the published-immutability rule has a sprint 1 line, and it is marked "part".
+| NFR-08 | Architecture rules enforced as tests (grading, progress access, published immutability) | app_spec.md §15; architecture.md §2; tdd.md §4; the PRD lines NFR-7 (S1), NFR-18 (S2), NFR-21 (S3) each name an architecture test in tests/architecture/ | S1 (NFR-7); S2 (NFR-18); S3 (NFR-21) | ✅ |
 
 ### B3. User journeys (capstone Section 6.1)
 
@@ -130,8 +128,8 @@ No out-of-scope item appears as in scope in any document.
 | AC-07 | New in S2; carried in S3 | sprint-2_prd.md; sprint-3_prd.md | ✅ |
 | AC-08 | New in S1; carried in S2 and S3 | same | ✅ |
 | AC-09 | New in S3 | sprint-3_prd.md | ✅ |
-| AC-10 | New in S2 (app_spec §13 and sprint-2_prd.md). Your expected plan is S3. | sprint-2_prd.md; app_spec.md §13 | ⚠ |
-| Sprint names | S1 "Catalog & Enrollment" and S3 "Quiz Engine & Instructor Workbench" match capstone Section 8.2-14. S2 is "Lessons, Progress & Admin Console"; the capstone pairs S2 with "lessons + progress" only. | sprint PRD titles | ⚠ |
+| AC-10 | New in S2; carried in S3. Agreed plan (app_spec §13). | sprint-2_prd.md; sprint-3_prd.md; app_spec.md §13 | ✅ |
+| Sprint names | S1 "Catalog & Enrollment" and S3 "Quiz Engine & Instructor Workbench" match capstone Section 8.2-14. S2 "Lessons, Progress & Admin Console" is accepted: S2 still covers lessons and progress. | sprint PRD titles | ✅ |
 
 ## Part C — Marking compliance
 
@@ -139,7 +137,7 @@ No out-of-scope item appears as in scope in any document.
 |---|---|---|---|
 | C1. Section 7.1: app_spec.md and a <feature>_spec.md per feature, each with an "Acceptance Criteria" section | app_spec.md §5; all seven feature specs have an "Acceptance Criteria" heading | ✅ | None |
 | C2. Section 8.1 item 3: specs for course-authoring, catalog, enrollment, quiz-engine, progress-tracker, instructor-workbench (plus admin-console) | Seven feature specs, plus app_spec.md §14 index | ✅ | None |
-| C3. Section 7.2 and 8.1 item 2: business case with problem, users, metrics, rules, value proposition, in own words | docs/business-case.md (all headings present) | ⚠ | The Out of Scope list is close to the capstone wording. Reword it. |
+| C3. Section 7.2 and 8.1 item 2: business case with problem, users, metrics, rules, value proposition, in own words | docs/business-case.md (all headings present; Out of Scope reworded in own words) | ✅ | Fixed |
 | C4. Section 7.2: testable acceptance (Given-When-Then or AC-NN) for at least 4 specs | Seven feature specs have both the AC-NN ids and Given-When-Then bullets | ✅ | None |
 | C5. Section 7.2: at least 4 rule files under src/domain/, planned and named | docs/architecture.md §5 names five planned rules | ✅ | None |
 | C6. Section 7.2: frontend with at least one responsive layout | architecture.md §1; sprint-1_prd.md NFR-11 | ✅ | None |
@@ -154,19 +152,17 @@ No out-of-scope item appears as in scope in any document.
 
 | Part | ✅ | ⚠ | ❌ |
 |---|---|---|---|
-| A — Project structure (rows) | 18 | 1 | 1 |
+| A — Project structure (rows) | 18 | 2 | 0 |
 | A4 — Headings (documents checked) | 14 | 0 | 0 |
-| B — Traceability (rows) | 45 | 3 | 0 |
-| C — Marking compliance (rows) | 11 | 1 | 0 |
+| B — Traceability (rows) | 48 | 0 | 0 |
+| C — Marking compliance (rows) | 12 | 0 | 0 |
 
-## Gaps and proposed fixes
+## Gaps and status
 
-Nothing below has been applied.
-
-1. **Capstone file (❌).** `docs/reference/AI Native Engineer Capstone - BC-011 LearnLab.md` is tracked by git. It is a .md file, not the local-only PDF your structure expects. *Fix:* untrack it and add it to `.git/info/exclude`, or confirm it can stay in the repo.
-2. **README.md (⚠).** It is tracked, one line long, and not in the expected structure. *Fix:* delete it, or confirm it can stay.
-3. **AC-10 sprint (⚠).** Your expected plan puts AC-10 in S3. app_spec §13 and sprint-2_prd.md put it in S2. *Fix:* choose one. If S2 stays, update the expected plan. If S3 is the target, move the requirements and update app_spec §13.
-4. **Sprint 2 title (⚠).** "Lessons, Progress & Admin Console" adds the admin console to a sprint the capstone describes as "lessons + progress". *Fix:* rename, or accept the difference.
-5. **NFR-08 as tests (⚠).** app_spec §15 says each NFR-08 rule needs a test, but the sprint PRDs carry the rules only as behaviours. *Fix:* add a Section 4 line to each PRD for its architecture test: published immutability in S1, progress access in S2, grading in S3.
-6. **Business case wording (⚠).** The Out of Scope list in business-case.md is close to the capstone text. *Fix:* reword each item in your own words.
-7. **Report file (resolved).** `specs/requirements-traceability.md` was missing before this run. It is created by this report.
+1. **Capstone file (⚠, accepted).** The capstone is kept in the repo by the owner's decision. It is a .md copy, not the local-only PDF, and it is tracked by git.
+2. **README.md (⚠, accepted).** Kept; replaced by the harness-generated README in sprint 1.
+3. **AC-10 sprint (✅, accepted).** AC-10 in S2 is the agreed plan (app_spec §13).
+4. **Sprint 2 title (✅, accepted).** S2 still covers lessons and progress, so the title difference is accepted.
+5. **NFR-08 as tests (✅, fixed).** Each NFR-08 rule now names an architecture test in tests/architecture/: NFR-7 (S1, carried in S2 and S3), NFR-18 (S2, carried in S3), NFR-21 (S3).
+6. **Business case wording (✅, fixed).** The six Out of Scope items are reworded in own words.
+7. **Report file (resolved).** `specs/requirements-traceability.md` was missing before the first check. It has been created.

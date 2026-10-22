@@ -112,7 +112,7 @@ Goal: a learner can attempt a quiz several times and see a best score, and an in
 - **NFR-4** (NFR-05) Database migrations are only added; existing migration files are never edited. (carried from sprint 1)
 - **NFR-5** (NFR-06) Logs are structured JSON, and every log line for one request carries the same correlation ID. (carried from sprint 1)
 - **NFR-6** (NFR-07) The health endpoint returns 200 within 1 second of a successful startup. (carried from sprint 1)
-- **NFR-7** (NFR-08, part) A published course cannot be changed without an unpublish transition first. (carried from sprint 1)
+- **NFR-7** (NFR-08, part) A published course cannot be changed without an unpublish transition first; a test in tests/architecture/ verifies this rule. (carried from sprint 1)
 - **NFR-8** (Quality gate) Coverage is measured with pytest-cov for the backend and @vitest/coverage-v8 for the frontend, with a minimum of 80%; the artefacts are reports/coverage.xml and reports/lcov.info. (carried from sprint 1)
 - **NFR-9** (Quality gate) End-to-end tests run with Playwright and include screenshot snapshots. (carried from sprint 1)
 - **NFR-10** (Quality gate) Every test carries the literal id "AC-NN" (or "NFR-NN", or the journey name for behaviour without an AC id): pytest test names start with test_acNN_ and carry an ac marker with the id, with docstrings starting "AC-NN:"; Vitest and Playwright titles start with "AC-NN". (carried from sprint 1)
@@ -123,10 +123,10 @@ Goal: a learner can attempt a quiz several times and see a best score, and an in
 - **NFR-15** (Synthetic-Data rule) Seed data uses fake names and @example.com emails only. (carried from sprint 1)
 - **NFR-16** (NFR-02) Lesson completions are append-only; they are never edited or deleted. (carried from sprint 2)
 - **NFR-17** (NFR-03) Learner performance data, such as progress and lesson completions, is never written to logs in plain text. (carried from sprint 2)
-- **NFR-18** (NFR-08) A learner cannot access another learner's progress. (carried from sprint 2)
+- **NFR-18** (NFR-08) A learner cannot access another learner's progress; a test in tests/architecture/ verifies this rule. (carried from sprint 2)
 - **NFR-19** (NFR-01) Quiz scores are integer percentages; no floating-point calculation is used.
 - **NFR-20** (NFR-02) Quiz attempts are append-only; they are never edited or deleted.
-- **NFR-21** (NFR-08) An instructor cannot grade their own courses' learners.
+- **NFR-21** (NFR-08) An instructor cannot grade their own courses' learners; a test in tests/architecture/ verifies this rule.
 
 ## 5. Out of Scope
 
@@ -225,6 +225,7 @@ Goal: a learner can attempt a quiz several times and see a best score, and an in
 - **NFR-3** → after a registration request, the log output contains no plain-text copy of the email. (carried)
 - **NFR-5** → every log line for one request is a JSON object that carries the same correlation ID. (carried)
 - **NFR-6** → the health endpoint returns 200 within 1 second of a successful startup. (carried)
+- **NFR-7** → the architecture test for published-course immutability passes, and a change request to a PUBLISHED course is rejected with the course unchanged. (carried)
 - **NFR-8** → the coverage run reports at least 80%, and reports/coverage.xml and reports/lcov.info exist. (carried)
 - **NFR-9** → the end-to-end run passes, and its screenshot snapshot files exist. (carried)
 - **NFR-11** → the catalog page at 375 px and at 1280 px width has no horizontal scrolling. (carried)
@@ -233,10 +234,10 @@ Goal: a learner can attempt a quiz several times and see a best score, and an in
 - **NFR-14** → the architecture test that checks one-way imports, controllers → services → repositories → domain, passes. (carried)
 - **NFR-16** → after a lesson completion is stored, an edit or delete request for it is rejected, and the stored record is unchanged. (carried)
 - **NFR-17** → after a lesson completion or a progress calculation, the log output contains no plain-text progress or completion data for the learner. (carried)
-- **NFR-18** → a request by one learner for another learner's progress is rejected, and no progress is returned. (carried)
+- **NFR-18** → a request by one learner for another learner's progress is rejected, no progress is returned, and the architecture test for learner progress access passes. (carried)
 - **NFR-19** → every stored quiz score is an integer percentage, and no floating-point value is stored or returned as a score.
 - **NFR-20** → after a quiz attempt is stored, an edit or delete request for it is rejected, and the stored record is unchanged.
-- **NFR-21** → a request by an instructor to grade a learner in the instructor's own course is rejected, and no score is stored.
+- **NFR-21** → a request by an instructor to grade a learner in the instructor's own course is rejected, no score is stored, and the architecture test for instructor grading passes.
 
 <!-- To decide at refresh:
 - Quiz placement: where a quiz sits in a course beyond one quiz per module, and how many quizzes a module can have.

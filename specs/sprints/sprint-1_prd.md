@@ -56,7 +56,7 @@ Goal: a running app where a learner can register, log in, browse published cours
 - **NFR-4** (NFR-05) Database migrations are only added; existing migration files are never edited.
 - **NFR-5** (NFR-06) Logs are structured JSON, and every log line for one request carries the same correlation ID.
 - **NFR-6** (NFR-07) The health endpoint returns 200 within 1 second of a successful startup.
-- **NFR-7** (NFR-08, part) A published course cannot be changed without an unpublish transition first.
+- **NFR-7** (NFR-08, part) A published course cannot be changed without an unpublish transition first; a test in tests/architecture/ verifies this rule.
 - **NFR-8** (Quality gate) Coverage is measured with pytest-cov for the backend and @vitest/coverage-v8 for the frontend, with a minimum of 80%; the artefacts are reports/coverage.xml and reports/lcov.info.
 - **NFR-9** (Quality gate) End-to-end tests run with Playwright and include screenshot snapshots.
 - **NFR-10** (Quality gate) Every test carries the literal id "AC-NN" (or "NFR-NN", or the journey name for behaviour without an AC id): pytest test names start with test_acNN_ and carry an ac marker with the id, with docstrings starting "AC-NN:"; Vitest and Playwright titles start with "AC-NN".
@@ -120,6 +120,7 @@ Goal: a running app where a learner can register, log in, browse published cours
 - **NFR-3** → after a registration request, the log output contains no plain-text copy of the email.
 - **NFR-5** → every log line for one request is a JSON object that carries the same correlation ID.
 - **NFR-6** → the health endpoint returns 200 within 1 second of a successful startup.
+- **NFR-7** → the architecture test for published-course immutability passes, and a change request to a PUBLISHED course is rejected with the course unchanged.
 - **NFR-8** → the coverage run reports at least 80%, and reports/coverage.xml and reports/lcov.info exist.
 - **NFR-9** → the end-to-end run passes, and its screenshot snapshot files exist.
 - **NFR-11** → the catalog page at 375 px and at 1280 px width has no horizontal scrolling.

@@ -61,9 +61,9 @@ The project has one hard constraint: every line of production code is written by
 
 ## Out of Scope
 
-- Real video streaming or CDN integration
-- Real payment gateway or paid courses
-- Live virtual classes (WebRTC)
-- Real proctoring or anti-cheat technology
-- Certification generation and external verification
-- Production deployment, secret management, and multi-region setup
+- Delivering video through a streaming service or content network is left out.
+- Charging for courses through a payment provider is left out.
+- Live classes held over real-time video (WebRTC) are left out.
+- Monitoring learners to detect cheating during quizzes is left out.
+- Issuing certificates, and verifying them from outside the system, is left out.
+- Running the product in production, managing its secrets, and hosting it across several regions are left out of this project.
