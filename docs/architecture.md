@@ -25,10 +25,10 @@ LearnLab is a lightweight learning management system. It has one backend API and
 | controllers | src/controllers/ | Receives requests, checks the caller's role, and passes work to services. |
 | services | src/services/ | Runs use cases such as enrolling, completing a lesson, or submitting a quiz. |
 | repositories | src/repositories/ | Reads and writes records in the database. |
-| domain | src/domain/ | Business rules with no framework code: course states, enrollment, quiz grading, progress, and access. |
-| core | src/core/ | Configuration and logging, used by every layer. |
+| domain | src/domain/ | Business rules: course states, enrollment, quiz grading, progress, and access. Uses only the Python standard library. |
+| core | src/core/ | Configuration and logging, used by controllers, services and repositories. |
 
-Dependencies flow one way only: controllers → services → repositories → domain. The domain does not depend on any other layer. The one-way rule is enforced by import-linter and by tests in tests/architecture/.
+Dependencies flow one way only: controllers → services → repositories → domain. The domain uses only the Python standard library and does not depend on any other layer. Core is used by controllers, services and repositories. The one-way rule is enforced by import-linter and by tests in tests/architecture/, using the three named tests in app_spec.md → Technical Acceptance.
 
 ## 3. System Context (C4 level 1)
 
@@ -81,7 +81,8 @@ sequenceDiagram
     S->>R: Save completion
     R->>DB: Store completion
     S->>D: Calculate progress percentage
-    D-->>C: Progress percentage
+    D-->>S: Progress percentage
+    S-->>C: Progress percentage
     L->>C: Submit quiz attempt
     C->>S: Grade attempt
     S->>D: Grade answers (integer percentage)
@@ -89,7 +90,8 @@ sequenceDiagram
     S->>R: Save attempt with timestamp
     R->>DB: Store attempt
     S->>D: Keep best score
-    D-->>C: Best score
+    D-->>S: Best score
+    S-->>C: Best score
     C-->>L: Progress and best score
 ```
 
@@ -99,7 +101,7 @@ The capstone doc requires at least four rule, policy, or validator files under s
 
 | Planned rule | Purpose | Covers |
 |---|---|---|
-| Course state rule | Allowed lifecycle moves: DRAFT → PUBLISHED → UNPUBLISHED → ARCHIVED. Any other move raises InvalidCourseStateException. | AC-02, AC-04, AC-08, DR-1 |
+| Course state rule | Allowed lifecycle moves: DRAFT → PUBLISHED → UNPUBLISHED → ARCHIVED. Any other move raises InvalidCourseStateException. A PUBLISHED course cannot be changed without an unpublish transition (NFR-08). | AC-02, AC-04, AC-08, DR-1, NFR-08 |
 | Enrollment policy | Enroll only in PUBLISHED courses, one enrollment per learner and course. | AC-01, AC-04, DR-3, DR-4 |
 | Quiz grading rule | Auto-grade MCQ (single correct) and TRUE / FALSE questions with a fixed rule; score as an integer percentage. | AC-05, AC-06, NFR-01, DR-6, DR-7 |
 | Progress calculation rule | Course progress as completed lessons divided by total lessons; band counts for instructors. | AC-07, AC-09, DR-5 |
