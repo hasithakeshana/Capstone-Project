@@ -34,6 +34,7 @@ Admins publish and unpublish courses, and the system enforces the course lifecyc
 - Given a course in DRAFT state, When the course is moved to ARCHIVED, Then InvalidCourseStateException is raised and its state stays DRAFT.
 - Given a course in PUBLISHED state, When it is moved directly to ARCHIVED, Then InvalidCourseStateException is raised and the state stays PUBLISHED.
 - Given a course in ARCHIVED state, When an admin tries to move it to any other state, Then the request is rejected with InvalidCourseStateException and its state stays ARCHIVED.
+- Given a course in UNPUBLISHED state and I am signed in as an instructor, When I try to archive it, Then the request is rejected and its state stays UNPUBLISHED. (NFR-04)
 
 ### Browse (user journey — no AC id)
 
@@ -45,7 +46,7 @@ Admins publish and unpublish courses, and the system enforces the course lifecyc
 ## Business Rules
 
 - The only allowed lifecycle moves are DRAFT → PUBLISHED, PUBLISHED → UNPUBLISHED, and UNPUBLISHED → ARCHIVED. Any other move raises InvalidCourseStateException. (AC-08, DR-1)
-- Only an admin may publish or unpublish a course. (AC-04, NFR-04)
+- Only an admin can change a course's state, including UNPUBLISHED → ARCHIVED. (AC-04, AC-08, NFR-04)
 - Learners can enroll only in PUBLISHED courses. (AC-04, DR-3)
 - A published course cannot be changed without an unpublish transition. (NFR-08)
 - Browse and search cover PUBLISHED courses only, and filter by category and difficulty. (Browse, user journey — no AC id)

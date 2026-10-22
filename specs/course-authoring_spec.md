@@ -21,6 +21,8 @@ Instructors create a new course in the DRAFT state and build its structure from 
 - Given I am signed in as an instructor, When I create a course with a title, description, category, and difficulty, Then the course is saved and its state is DRAFT.
 - Given I am signed in as a learner, When I try to create a course, Then the request is rejected and no course is saved.
 - Given I am not signed in, When I try to create a course, Then the request is rejected and no course is saved. (NFR-04)
+- Given I am signed in as an admin, When I try to create a course, Then the request is rejected and no course is saved. (NFR-04)
+- Given I am signed in as an instructor, When I create a course, Then I am stored as its owner. (AC-02)
 
 ### AC-03 Instructor can add modules and nested lessons to a draft course (course → modules → lessons hierarchy)
 
@@ -33,6 +35,7 @@ Instructors create a new course in the DRAFT state and build its structure from 
 ## Business Rules
 
 - Every new course starts in DRAFT state. (AC-02, DR-1)
+- The instructor who creates a course is stored as its owner. (AC-02)
 - A course has a title, description, category, and difficulty. (AC-02)
 - Modules and lessons can be added only to a DRAFT course. (AC-03, DR-2)
 - The course → modules → lessons hierarchy is fixed by AC-03. (AC-03)
