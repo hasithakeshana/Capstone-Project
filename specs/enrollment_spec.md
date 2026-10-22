@@ -31,6 +31,9 @@ Learners register themselves and enroll in a published course. A learner can enr
 - Given a learner sends the same enrollment request twice (a retry), When both requests are processed, Then exactly one enrollment exists for that learner and course and the second request is rejected. (AC-01 — duplicate enrollment under retry)
 - Given an enrollment exists, When anyone tries to edit or delete it, Then the change is rejected and the record is unchanged. (NFR-02)
 - Given a visitor registers with an email, When the request is logged, Then the log does not contain the email in plain text. (NFR-03, DR-13)
+- Given a registered user with a correct email and password, When they log in, Then they receive a token that carries their role. (AC-01, NFR-04)
+- Given a wrong password, When they log in, Then the request is rejected and no token is returned. (AC-01, NFR-04)
+- Given a request with no token or an invalid token, When it calls a protected endpoint, Then it is rejected. (AC-01, NFR-04)
 
 ## Business Rules
 

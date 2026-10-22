@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Admins manage the course catalog, approve published courses, and monitor enrollment-level analytics. Publishing and unpublishing are specified in catalog_spec.md. This feature covers AC-10. It is delivered in Sprint 3.
+Admins manage the course catalog, approve published courses, and monitor enrollment-level analytics. Publishing and unpublishing are specified in catalog_spec.md. This feature covers AC-10. It is delivered in Sprint 2.
 
 ## Actors
 
@@ -30,6 +30,7 @@ Admins manage the course catalog, approve published courses, and monitor enrollm
 - Given a course in UNPUBLISHED or ARCHIVED state, When an admin tries to approve it, Then the request is rejected and no approval is recorded. (AC-10)
 - Given I am signed in as an instructor, When I try to approve a course, Then the request is rejected. (NFR-04)
 - Given I am signed in as an instructor, When I request enrollment analytics, Then the request is rejected. (NFR-04)
+- Given a PUBLISHED course with 5 lesson completions by its learners, When an admin views engagement for that course, Then the lesson completion count shown is 5. (AC-10 — monitor engagement)
 
 ## Business Rules
 

@@ -145,8 +145,8 @@ The application starts locally with one command, and loads the seed data. The co
 | Sprint | ACs | Main features |
 |---|---|---|
 | S1 | AC-01, AC-02, AC-04, AC-08 | Learner registration and login; course creation in DRAFT; publish and unpublish; lifecycle rules; browse and search; enrollment; seed data; architecture rules (import-linter, tests/architecture/), /health, JSON logs with correlation id |
-| S2 | AC-03, AC-07 | Modules and lessons; lesson completion; course progress |
-| S3 | AC-05, AC-06, AC-09, AC-10 | Quiz engine with auto-grading and attempts; instructor workbench; admin console |
+| S2 | AC-03, AC-07, AC-10 | Modules and lessons; lesson completion; course progress; admin console |
+| S3 | AC-05, AC-06, AC-09 | Quiz engine with auto-grading and attempts; instructor workbench |
 
 ## 14. Feature Specs Index
 
@@ -165,4 +165,7 @@ The application starts locally with one command, and loads the seed data. The co
 - **NFR-07:** Given the app has started, When GET /health is called, Then it returns 200 within 1 second.
 - **NFR-06:** Given any API request, When it is logged, Then the log line is JSON and contains a correlation id, and every line for that request carries the same id.
 - **NFR-05:** Given an existing migration, When a schema change is needed, Then a new migration is added and existing migration files are never edited.
-- **Architecture:** Given the codebase, When the architecture tests run, Then controllers → services → repositories → domain is enforced in one direction (import-linter and tests/architecture/).
+- **Architecture — controllers:** Given the codebase, When the architecture tests run, Then controllers do not import repositories directly (import-linter and tests/architecture/).
+- **Architecture — domain:** Given the codebase, When the architecture tests run, Then domain does not import services, repositories, controllers, or web or database frameworks.
+- **Architecture — one-way flow:** Given the codebase, When the architecture tests run, Then imports flow one way only: controllers → services → repositories → domain.
+- **NFR-08 tests:** Each NFR-08 rule is covered by a test: an instructor cannot grade their own course's learners; a learner cannot access another learner's progress; a published course cannot be changed without an unpublish transition.
