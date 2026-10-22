@@ -7,7 +7,7 @@ Instructors create a new course in the DRAFT state and build its structure from 
 ## Actors
 
 - Instructor (creates courses and adds modules and lessons)
-- Learner and Admin do not use this feature. *Doc silent — to be decided later: whether Admin can create courses.*
+- Learner and Admin do not use this feature.
 
 ## User Stories
 

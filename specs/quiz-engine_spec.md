@@ -63,7 +63,7 @@ Learners attempt quizzes made of MCQ (single correct answer) and TRUE / FALSE qu
 - **NFR-02:** Quiz attempts are only added, never edited or deleted. (DR-9)
 - **NFR-03:** Quiz scores are learner performance data and are never written to logs in plain text. (DR-13)
 - **NFR-04:** Submitting attempts and viewing attempt history are checked at the controller layer.
-- **NFR-08:** An instructor cannot grade their own course's learners. Grading in this feature is automatic. See Open Questions for manual grading.
+- **NFR-08:** An instructor cannot grade their own course's learners. Grading is automatic only (AC-05); no user can set or change a quiz score.
 
 ## Related User Journeys
 

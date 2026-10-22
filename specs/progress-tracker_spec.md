@@ -42,8 +42,8 @@ Quiz scores in this view are added by the Quiz Engine feature in sprint 3.
 - Lesson completion records are append-only. (NFR-02, DR-9)
 - A learner cannot access another learner's progress. Instructors see only aggregated band counts (AC-09); admins see enrollment analytics (AC-10). (NFR-08, DR-11)
 - Quiz scores are shown separately from course progress, not combined into it. (Progress user journey)
-- Learners move through modules and lessons sequentially. (Learn user journey). Whether the system enforces this order is an Open Question.
-- The system computes and snapshots course progress for each learner. (Progress Tracker system function). When and how the snapshot is taken is an Open Question.
+- Learners move through modules and lessons sequentially. (Learn user journey).
+- The system computes and snapshots course progress for each learner. (Progress Tracker system function).
 
 ## Applicable NFRs
 

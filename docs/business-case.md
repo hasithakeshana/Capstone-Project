@@ -6,15 +6,13 @@ An online learning platform wants to launch a lightweight learning management sy
 
 The project has one hard constraint: every line of production code is written by Claude Code agents under human supervision. Nobody writes the product code by hand. This means the specifications, business rules, and acceptance criteria must be clear and testable enough for agents to build the product and for reviewers to check it.
 
-*Doc silent — to be decided later: the current pain the platform has today.*
-
 ## Target Users
 
 | Role | Who they are | Main needs | Key journeys |
 |---|---|---|---|
-| Learner | Role that registers and enrolls in published courses (AC-01) | Find published courses, enroll once, work through lessons, take quizzes, see own progress | Browse, Enroll, Learn, Assess, Progress (6.1) |
-| Instructor | Role that authors courses (AC-02, AC-03) | Build draft courses with modules, lessons, and quiz questions; see learner progress per course | Instructor Workbench (6.2) |
-| Admin | Role that manages the catalog and publication (AC-04, AC-10) | Publish and unpublish courses, approve published courses, watch enrollment and engagement | Admin Console (6.2) |
+| Learner | Role that registers and enrolls in published courses (AC-01) | Find published courses, enroll once, work through lessons, take quizzes, see own progress | Browse, Enroll, Learn, Assess, Progress (user journeys) |
+| Instructor | Role that authors courses (AC-02, AC-03) | Build draft courses with modules, lessons, and quiz questions; see learner progress per course | Instructor Workbench (internal function) |
+| Admin | Role that manages the catalog and publication (AC-04, AC-10) | Publish and unpublish courses, approve published courses, watch enrollment and engagement | Admin Console (internal function) |
 
 ## Success Metrics
 
@@ -32,7 +30,7 @@ The project has one hard constraint: every line of production code is written by
    analytics — yes/no — [AC-10]
 6. Every acceptance criterion has at least one test that names its AC id — 10 of 10 ACs — [AC-01 to AC-10]
 7. The platform runs locally with a single command and seed data, and the health endpoint
-   returns 200 within 1 second of startup — yes/no — [NFR-07, §8.1 item 1]
+   returns 200 within 1 second of startup — yes/no — [NFR-07]
 
 ## Domain Rules
 
@@ -50,7 +48,7 @@ The project has one hard constraint: every line of production code is written by
 - **DR-12:** Instructors cannot grade their own courses' learners. [NFR-08]
 - **DR-13:** Learner personal data is never written to logs in plain text. [NFR-03]
 
-*NFR-05 (append-only migrations) and NFR-06 (structured JSON logs) are technical rules defined in specs/app_spec.md Section 6.*
+*NFR-05 (append-only migrations) and NFR-06 (structured JSON logs) are technical rules defined in specs/app_spec.md → Non-Functional Requirements.*
 
 ## Value Proposition
 
