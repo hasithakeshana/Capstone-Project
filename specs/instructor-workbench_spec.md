@@ -52,5 +52,4 @@ Instructors see learner progress for a course, aggregated into four progress ban
 
 ## Open Questions
 
-- Doc silent — to be decided later: how a course is tied to an instructor (ownership).
 - Doc silent — to be decided later: band boundary at exactly 25%, 50% and 75%.

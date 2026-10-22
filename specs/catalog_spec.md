@@ -69,5 +69,4 @@ Admins publish and unpublish courses, and the system enforces the course lifecyc
 
 ## Open Questions
 
-- Doc silent — to be decided later: who archives a course.
 - Doc silent — to be decided later: what approval (AC-10) means.

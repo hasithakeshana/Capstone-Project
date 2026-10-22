@@ -57,4 +57,4 @@ Instructors create a new course in the DRAFT state and build its structure from 
 
 ## Open Questions
 
-- Doc silent — to be decided later: how a course is tied to an instructor (ownership).
+None

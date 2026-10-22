@@ -48,6 +48,8 @@ Allowed transitions, as stated in AC-08:
 | Any other move (for example UNPUBLISHED → PUBLISHED) | — | ✗ raises InvalidCourseStateException |
 
 - Every new course starts in DRAFT (AC-02).
+- The instructor who creates a course is stored as its owner (AC-02).
+- Only an admin can change a course's state, including UNPUBLISHED → ARCHIVED (AC-08).
 ## 5. Acceptance Criteria
 
 *Each AC must have at least one test referencing its AC-NN identifier.*
