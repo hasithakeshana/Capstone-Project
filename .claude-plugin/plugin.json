@@ -29,5 +29,6 @@
     "./.claude/commands/spec-change.md",
     "./.claude/commands/sprint-close.md",
     "./.claude/commands/capstone-audit.md"
-  ]
+  ],
+  "hooks": "./.claude/hooks/learnlab-hooks.json"
 }

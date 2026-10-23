@@ -2,83 +2,52 @@
 
 ## Layer Hierarchy
 
-The project follows a strict layered architecture. Dependencies flow **downward only** — a layer may import from layers below it but never from layers above it.
+LearnLab uses these layers, lowest first: **core → domain → repositories → services → controllers**. The layer roots are `src/`. The order is set in `project-manifest.json` → `architecture.layers`.
 
-```
-┌─────────────┐
-│     UI      │  ← Layer 6 (highest)
-├─────────────┤
-│     API     │  ← Layer 5
-├─────────────┤
-│   Service   │  ← Layer 4
-├─────────────┤
-│ Repository  │  ← Layer 3
-├─────────────┤
-│   Config    │  ← Layer 2
-├─────────────┤
-│    Types    │  ← Layer 1 (lowest)
-└─────────────┘
-```
+Full design: [docs/architecture.md](../docs/architecture.md). Cross-sprint invariants: [specs/design/constitution.md](../specs/design/constitution.md).
 
-### Layer Definitions
+| Layer | Folder | Responsibility | May import from |
+|-------|--------|----------------|-----------------|
+| core | `src/core/` | Configuration and logging | Standard library and installed packages only. No other layer. |
+| domain | `src/domain/` | Business rules: course states, enrollment, quiz grading, progress, access | Standard library only. No other layer, not even core. |
+| repositories | `src/repositories/` | Reads and writes records in SQLite | domain, core |
+| services | `src/services/` | Use cases: enroll, complete a lesson, submit a quiz | repositories, domain, core |
+| controllers | `src/controllers/` | HTTP routes, role checks, request and response mapping | services, core. Never repositories. |
 
-| Layer | Responsibility | May Import From |
-|-------|---------------|-----------------|
-| Types | Domain models, interfaces, enums, shared type definitions | (none) |
-| Config | Environment variables, feature flags, constants, app configuration | Types |
-| Repository | Data access, persistence, external data sources | Types, Config |
-| Service | Business logic, domain rules, orchestration | Types, Config, Repository |
-| API | Route handlers, request/response mapping, middleware, validation | Types, Config, Repository, Service |
-| UI | Components, pages, client-side state, rendering | Types, Config, Service, API |
+The manifest order is the harness gate's minimum (downward imports only). LearnLab is stricter: domain imports only the Python standard library — enforced by an import-linter forbidden contract (domain ↛ core, fastapi, sqlalchemy).
 
 ## One-Way Dependency Rule
 
-**Never import from a higher layer.**
+Imports flow one way: controllers → services → repositories → domain. Core is used by controllers, services and repositories.
 
 Violations:
-- A `Service` importing from `API` — FORBIDDEN
-- A `Repository` importing from `Service` — FORBIDDEN
-- A `Config` importing from `Repository` — FORBIDDEN
-- A `Types` importing from any other layer — FORBIDDEN
+- `domain` importing from core, repositories, services or controllers — FORBIDDEN
+- `repositories` importing from services or controllers — FORBIDDEN
+- `services` importing from controllers — FORBIDDEN
+- `controllers` importing from repositories — FORBIDDEN (routes go through services)
+- `core` importing from any other layer — FORBIDDEN
+
+The manifest order (core, domain, repositories, services, controllers) would allow domain to import core. This file is stricter: domain imports nothing from other layers.
 
 The `verify-on-save` hook enforces this rule on every file save; the git `pre-commit` gate re-checks staged files. If the layer gate matches no staged source file (the project doesn't follow a `<root>/<layer>/` layout), `pre-commit` warns loudly instead of silently passing — configure or disable the check via `project-manifest.json` (see Customization).
 
+The import-linter contracts that enforce this rule are written in sprint 1 from `docs/architecture.md`. Until they run in the test gate, this section is a rule to follow, not a check.
+
 ## Verification Commands
 
-### Types layer
-```bash
-# No imports from Config, Repository, Service, API, or UI
-grep -rn "from.*config\|from.*repository\|from.*service\|from.*api\|from.*ui" src/types/
-```
+Run from the repo root. These are quick local checks. The gate is `uv run lint-imports`.
 
-### Config layer
 ```bash
-# No imports from Repository, Service, API, or UI
-grep -rn "from.*repository\|from.*service\|from.*api\|from.*ui" src/config/
-```
-
-### Repository layer
-```bash
-# No imports from Service, API, or UI
-grep -rn "from.*service\|from.*api\|from.*ui" src/repository/
-```
-
-### Service layer
-```bash
-# No imports from API or UI
-grep -rn "from.*api\|from.*ui" src/service/
-```
-
-### API layer
-```bash
-# No imports from UI
-grep -rn "from.*ui" src/api/
-```
-
-### Full architecture audit
-```bash
-# Run the architecture check hook directly
-node .claude/hooks/verify-on-save.js  # per-file; the git pre-commit hook scans staged files
+# domain: standard library only
+grep -rnE "^(from|import) (fastapi|sqlalchemy|core|repositories|services|controllers)" src/domain/
+# repositories: no services or controllers
+grep -rnE "^(from|import) (services|controllers)" src/repositories/
+# services: no controllers
+grep -rnE "^(from|import) controllers" src/services/
+# controllers: no repositories
+grep -rnE "^(from|import) repositories" src/controllers/
+# core: no other layer
+grep -rnE "^(from|import) (domain|repositories|services|controllers)" src/core/
 ```
 
 ## Cross-Cutting Concerns

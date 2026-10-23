@@ -14,7 +14,7 @@ Enforce the layer rules and the NFR-08 rules as tests that run in the test gate.
 1. Configure import-linter in `pyproject.toml` under `[tool.importlinter]`. Layer order, from `docs/architecture.md` → Layered Structure: controllers → services → repositories → domain. Core is used by controllers, services and repositories.
 2. Add these contracts:
    - Layers contract: controllers → services → repositories → domain.
-   - Forbidden: `domain` must not import `fastapi`, `sqlalchemy`, services, repositories, controllers or core. Domain uses only the standard library.
+   - Forbidden: `domain` ↛ `core`, `fastapi`, `sqlalchemy` (and services, repositories, controllers). Domain uses only the standard library.
    - Forbidden: `controllers` must not import `repositories`.
    - Forbidden: `core` must not import controllers, services, repositories or domain.
 3. Domain imports only the standard library. Core is used by controllers, services and repositories. Domain never imports core, and core never imports the other layers.

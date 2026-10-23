@@ -11,7 +11,7 @@ readability.
 
 ## Encoded Policy (from project-manifest.json)
 
-**Import hierarchy:** not configured — see `.claude/architecture.md`.
+**Import hierarchy:** controllers → services → repositories → domain (+ core), enforced by import-linter — see `.claude/architecture.md`.
 **Security posture:** sensor tier `standard`. A change crossing a security / data / API boundary triggers the security-reviewer + bounded re-verification — hold those to a higher bar.
 **Domain conventions:** enforce the ubiquitous-language terms in `specs/design/CONTEXT.md`.
 **Cross-sprint invariants:** must not be violated — see `specs/design/constitution.md`.
