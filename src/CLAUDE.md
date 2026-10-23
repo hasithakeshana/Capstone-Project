@@ -8,3 +8,4 @@ Run from the repo root: `uv run pytest -x -q`, `uv run ruff check --fix .`, `uv 
 - `GET /health` returns 200 within 1 second of startup (NFR-07).
 - Declare `pytest-cov` and `import-linter` as dev dependencies in `pyproject.toml`.
 - Schema changes go through a new migration only (see [migrations/CLAUDE.md](../migrations/CLAUDE.md)).
+- Seed data creates course states through the domain state machine, never by assigning status directly (course-publish-gate).
