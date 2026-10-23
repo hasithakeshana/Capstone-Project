@@ -1,6 +1,6 @@
 ---
 name: archtest-author-agent
-model: haiku
+model: claude-haiku-5-5
 description: Use for architecture stories in sprint 1 (the architecture NFRs, sprint 1 NFR-12 to NFR-14), whenever a new layer rule is needed, or on request. Writes and maintains the import-linter contracts and the architecture tests that enforce layering and the NFR-08 rules.
 tools:
   - Read

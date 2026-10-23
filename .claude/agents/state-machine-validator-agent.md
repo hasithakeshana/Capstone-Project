@@ -1,6 +1,6 @@
 ---
 name: state-machine-validator-agent
-model: haiku
+model: claude-haiku-5-5
 description: Use when a story group changes course states or the course state machine file, or when the user asks for a state machine check. Independently checks every allowed and forbidden transition and searches for status changes made outside the state machine.
 tools:
   - Read

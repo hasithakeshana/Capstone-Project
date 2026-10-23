@@ -1,6 +1,6 @@
 ---
 name: course-publisher-agent
-model: haiku
+model: claude-haiku-5-5
 description: Use when reviewing a story group that touches courses or publishing (the domain review step in .claude/program.md), when implementing AC-02, AC-04 or AC-08 through /implement-ac, or when the user asks for a course review. Checks course creation, lifecycle and publishing against the specs.
 tools:
   - Read

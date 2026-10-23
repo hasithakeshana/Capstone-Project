@@ -1,6 +1,6 @@
 ---
 name: quiz-grader-agent
-model: haiku
+model: claude-haiku-5-5
 description: Use when reviewing a story group that touches quizzes, quiz questions or quiz attempts (sprint 3), or when implementing AC-05 or AC-06 through /implement-ac. Checks deterministic grading, question types, attempt history and best-score rules against the quiz spec.
 tools:
   - Read

@@ -1,6 +1,6 @@
 ---
 name: doc-writer
-model: haiku
+model: claude-haiku-5-5
 description: Use at /sprint-close, after the sprint 1 design gate (architecture update), after sprint 3 (TDD worked example), or on request. Updates the project docs so they match what was built. Reads only the sprint summary, the quality card, the design changes and the sprint contracts.
 tools:
   - Read

@@ -1,6 +1,6 @@
 ---
 name: enrollment-manager-agent
-model: haiku
+model: claude-haiku-5-5
 description: Use when reviewing a story group that touches learner registration or enrollment (the domain review step in .claude/program.md), when implementing AC-01 through /implement-ac, or when the user asks for an enrollment review. Checks registration, enrollment uniqueness and the PUBLISHED rule.
 tools:
   - Read

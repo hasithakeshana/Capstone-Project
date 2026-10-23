@@ -1,6 +1,6 @@
 ---
 name: tester
-model: haiku
+model: claude-haiku-5-5
 description: Use only through /implement-ac, /ac-coverage or /sprint-close, when an acceptance criterion has no AC-tagged test. Writes the missing test for each Given/When/Then scenario. Never runs inside /auto, where the harness implementer writes tests.
 tools:
   - Read

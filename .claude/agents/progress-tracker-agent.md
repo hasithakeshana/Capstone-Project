@@ -1,6 +1,6 @@
 ---
 name: progress-tracker-agent
-model: haiku
+model: claude-haiku-5-5
 description: Use when reviewing a story group that touches lessons, lesson completion or progress (sprints 2 and 3), when implementing AC-07 or AC-09 through /implement-ac, or when the user asks for a progress review. Checks progress percentages, band boundaries and learner privacy against the specs.
 tools:
   - Read
