@@ -35,9 +35,15 @@ function writtenText(input) {
   return '';
 }
 
-function mutatesRecords(text) {
+function existingText(input, file) {
+  // Write replaces the whole file, so only Edit and MultiEdit keep the old content.
+  if (input.content !== undefined || !fs.existsSync(file)) return '';
+  return fs.readFileSync(file, 'utf8');
+}
+
+function mutatesRecords(text, context) {
   if (SQL_CHECKS.some((re) => re.test(text))) return true;
-  if (!MODEL.test(text)) return false;
+  if (!MODEL.test(context)) return false;
   return ORM_CHECKS.some((re) => re.test(text));
 }
 
@@ -52,7 +58,10 @@ function main() {
   }
   if (!input.file_path) return 0;
   const rel = path.relative(projectDir(), input.file_path).split(path.sep).join('/');
-  if (!SCOPE.test(rel) || !mutatesRecords(writtenText(input))) return 0;
+  if (!SCOPE.test(rel)) return 0;
+  const text = writtenText(input);
+  const context = `${existingText(input, input.file_path)}\n${text}`;
+  if (!mutatesRecords(text, context)) return 0;
   process.stderr.write(`attempt-immutability-check: update/delete on enrollments, lesson completions or quiz attempts in ${rel}.\n`);
   process.stderr.write('These records are append-only (NFR-02). Remove the update or delete.\n');
   return 2;

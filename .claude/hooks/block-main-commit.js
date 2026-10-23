@@ -10,7 +10,7 @@ const { execSync } = require('child_process');
 
 const COMMIT_OR_PUSH = /(^|[\s;&|(])git\s+(commit|push)(\s|$)/;
 const PUSH_TO_MAIN = /(^|[\s;&|(])git\s+push\b[^;&|\n]*\b(main|master)\b/;
-const MESSAGE = 'Blocked: no direct commits/pushes to main. Use a branch + MR.';
+const MESSAGE = 'Blocked: no direct commits/pushes to main. Use a branch + PR.';
 
 function currentBranch() {
   try {
