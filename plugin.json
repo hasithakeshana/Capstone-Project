@@ -1,0 +1,34 @@
+{
+  "name": "learnlab-substrate",
+  "version": "1.0.0",
+  "description": "LearnLab project substrate: domain reviewer agents, LearnLab skills and commands for the course, enrollment, progress and quiz rules.",
+  "author": {
+    "name": "Keshana R.P.H.H."
+  },
+  "agents": [
+    "./.claude/agents/course-publisher-agent.md",
+    "./.claude/agents/enrollment-manager-agent.md",
+    "./.claude/agents/progress-tracker-agent.md",
+    "./.claude/agents/quiz-grader-agent.md",
+    "./.claude/agents/state-machine-validator-agent.md",
+    "./.claude/agents/archtest-author-agent.md",
+    "./.claude/agents/tester.md",
+    "./.claude/agents/doc-writer.md"
+  ],
+  "skills": [
+    "./.claude/skills/course-state-validator",
+    "./.claude/skills/enrollment-deduper",
+    "./.claude/skills/progress-aggregator",
+    "./.claude/skills/quiz-grader",
+    "./.claude/skills/spec-to-test-generator",
+    "./.claude/skills/archtest-author"
+  ],
+  "commands": [
+    "./.claude/commands/implement-ac.md",
+    "./.claude/commands/ac-coverage.md",
+    "./.claude/commands/spec-change.md",
+    "./.claude/commands/sprint-close.md",
+    "./.claude/commands/capstone-audit.md"
+  ],
+  "hooks": "./.claude/hooks/learnlab-hooks.json"
+}
