@@ -41,6 +41,6 @@ Domain reviewer. Expert in quiz grading and attempt history. Covers AC-05 (MCQ w
 
 ## Output
 
-Write `specs/reviews/domain-review-{group}.md`:
+Write `specs/reviews/domain-review-{group}-{agent-name}.md`:
 1. A table: AC | PASS/FAIL | evidence (file:line) | fix.
 2. A list of blocking findings. Write "none" if there are none.

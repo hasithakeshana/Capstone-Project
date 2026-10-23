@@ -25,7 +25,7 @@
   - any state change → `state-machine-validator-agent`
   - architecture stories → `archtest-author-agent`
 
-  Save findings to `specs/reviews/domain-review-{group}.md`. Fix blocking findings first.
+  Save findings to `specs/reviews/domain-review-{group}-{agent-name}.md` (for example `domain-review-group-A-enrollment-manager-agent.md`). Fix blocking findings first.
 - **Quality rules (every group; the orchestrator re-reads these each iteration):**
   - **Commit cadence:** same format as process rule PR-learnlab-01: `test(AC-NN): <behaviour>` (failing test, red), then `feat(AC-NN): <change>` (green), then `refactor(AC-NN): <change>` (optional; source only, never tests or snapshots). If a harness gate blocks a test-only commit, commit test + code together as `feat(AC-NN): …` and note "red step blocked by <gate>" in the commit body. The end-of-group commit only collects leftovers. Every commit ends with `Co-Authored-By: Claude <noreply@anthropic.com>`.
   - **Test ids:** every acceptance criterion in the sprint has at least one test with the literal id `AC-NN`. pytest: name `test_acNN_<behaviour>`, marker `@pytest.mark.ac("AC-NN")`, docstring starting `AC-NN: …`. Vitest and Playwright titles start with `AC-NN …`. Where a harness story AC id exists (e.g. `E1-S1-AC2`), put it in brackets after AC-NN in the title and docstring: `AC-01 (E1-S1-AC2): …`. NFR and architecture tests: `test_nfrNN_<behaviour>` / `test_arch_<behaviour>` with `NFR-NN:` / `Architecture:` at the start of the docstring. When `pyproject.toml` is created (sprint 1), register the marker: `[tool.pytest.ini_options]` `markers = ["ac(id): acceptance criterion id"]`.

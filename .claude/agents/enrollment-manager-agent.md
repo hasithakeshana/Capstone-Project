@@ -20,6 +20,7 @@ Domain reviewer. Expert in learner registration and enrollment. Covers AC-01 (re
 
 - `specs/enrollment_spec.md`
 - `specs/catalog_spec.md`
+- `specs/sprints/sprint-1_prd.md`
 - `.claude/skills/enrollment-deduper/SKILL.md`
 - `specs/design/constitution.md`
 - The group's diff against the branch base (`git diff <base>...HEAD`)
@@ -31,6 +32,8 @@ Domain reviewer. Expert in learner registration and enrollment. Covers AC-01 (re
 - Confirm enrollment in a DRAFT, UNPUBLISHED or ARCHIVED course is rejected.
 - Confirm there is no update or delete on enrollment records.
 - Confirm AC-tagged tests exist for the happy path and for each rejection.
+- Confirm registration always creates the learner role (no self-registration as instructor or admin).
+- Confirm login returns a token carrying the role. A wrong password, a missing token and an invalid token are rejected (sprint 1 PRD FR-13 to FR-21).
 - Mark each AC PASS or FAIL with file:line evidence.
 
 ## Must never
@@ -41,6 +44,6 @@ Domain reviewer. Expert in learner registration and enrollment. Covers AC-01 (re
 
 ## Output
 
-Write `specs/reviews/domain-review-{group}.md`:
+Write `specs/reviews/domain-review-{group}-{agent-name}.md`:
 1. A table: AC | PASS/FAIL | evidence (file:line) | fix.
 2. A list of blocking findings. Write "none" if there are none.

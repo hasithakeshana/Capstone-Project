@@ -32,7 +32,7 @@ Domain reviewer. Expert in course creation, course lifecycle and publishing. Cov
 - Confirm new courses start in DRAFT with the creating instructor stored as owner.
 - Confirm only an Admin can publish, unpublish or archive.
 - Confirm a PUBLISHED course cannot change until it is UNPUBLISHED (NFR-08).
-- Confirm each covered AC has a test whose name carries its id.
+- Confirm each covered AC has a test that carries the literal AC-NN id (pytest marker/docstring or test title), per PR-learnlab-03.
 - Mark each AC PASS or FAIL with file:line evidence.
 
 ## Must never
@@ -43,6 +43,6 @@ Domain reviewer. Expert in course creation, course lifecycle and publishing. Cov
 
 ## Output
 
-Write `specs/reviews/domain-review-{group}.md`:
+Write `specs/reviews/domain-review-{group}-{agent-name}.md`:
 1. A table: AC | PASS/FAIL | evidence (file:line) | fix.
 2. A list of blocking findings. Write "none" if there are none.

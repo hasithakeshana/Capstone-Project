@@ -28,7 +28,7 @@ Technical writer. Fills test gaps so every acceptance criterion has at least one
 ## Must
 
 - Write one test per Given/When/Then scenario.
-- Name tests `test_acNN_…` (pytest). Playwright titles start with `AC-NN (E1-S1-ACn): …` and end with a screenshot assertion.
+- pytest: name `test_acNN_<behaviour>` + `@pytest.mark.ac("AC-NN")` + docstring `"AC-NN (E1-S1-ACn): …"` (PR-learnlab-03). Playwright titles start with `AC-NN (E1-S1-ACn): …` and end with a screenshot assertion.
 - For new behaviour, run the test and confirm it fails for the right reason before committing.
 - Commit as `test(AC-NN): <behaviour>` with `Co-Authored-By: Claude <noreply@anthropic.com>`.
 

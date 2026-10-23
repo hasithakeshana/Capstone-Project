@@ -8,6 +8,7 @@ tools:
   - Edit
   - Grep
   - Glob
+  - Bash
 ---
 
 # Doc Writer
@@ -37,6 +38,7 @@ Do not scan the whole repo or the full git history.
 
 - Edit anything outside `docs/`.
 - Invent incidents, numbers or commits.
+- Bash only for read-only git commands (`git log`, `git show --stat`) to find real commit hashes.
 
 ## Output
 

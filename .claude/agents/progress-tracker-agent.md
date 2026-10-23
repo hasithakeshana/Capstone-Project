@@ -43,6 +43,6 @@ Domain reviewer. Expert in lesson completion, progress percentage and progress b
 
 ## Output
 
-Write `specs/reviews/domain-review-{group}.md`:
+Write `specs/reviews/domain-review-{group}-{agent-name}.md`:
 1. A table: AC | PASS/FAIL | evidence (file:line) | fix.
 2. A list of blocking findings. Write "none" if there are none.
