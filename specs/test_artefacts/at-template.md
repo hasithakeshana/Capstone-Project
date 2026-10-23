@@ -26,6 +26,9 @@ Use this shape for every acceptance test. Write it in plain business language.
 ```python
 import pytest
 
+# Names below are set in the sprint 1 design; keep this shape.
+from services.enrollment_service import DuplicateEnrollmentError, enroll_learner
+
 
 class FakeEnrollmentStore:  # in-memory adapter for the enrollment port
     def __init__(self) -> None:
@@ -41,12 +44,16 @@ class FakeEnrollmentStore:  # in-memory adapter for the enrollment port
 @pytest.mark.ac("AC-01")
 def test_ac01_learner_cannot_enroll_twice() -> None:
     """AC-01 (E1-S1-ACn): a learner cannot enroll twice in the same course."""
-    # GIVEN Ada is a registered learner and "intro-python" is PUBLISHED
-    store = FakeEnrollmentStore()  # enroll_learner: service entry point (sprint 1)
-    # WHEN she enrolls once, then again
-    enroll_learner("ada@example.com", "intro-python", store=store)
-    with pytest.raises(Exception):  # rejection error is set in the sprint 1 design
-        enroll_learner("ada@example.com", "intro-python", store=store)
+    # GIVEN learner "learner-ada" and the PUBLISHED course "course-intro-python"
+    store = FakeEnrollmentStore()
+    enroll_learner("learner-ada", "course-intro-python", store=store)
+
+    # WHEN she enrolls in the same course again
+    with pytest.raises(DuplicateEnrollmentError):
+        enroll_learner("learner-ada", "course-intro-python", store=store)
+
     # THEN exactly one enrollment exists
-    assert store.count("ada@example.com", "intro-python") == 1
+    assert store.count("learner-ada", "course-intro-python") == 1
 ```
+
+Rules: assert a named domain error, never bare `Exception`; import from the service layer; use ids, not emails; one behaviour per test.
