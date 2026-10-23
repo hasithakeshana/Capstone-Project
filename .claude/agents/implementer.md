@@ -1,6 +1,6 @@
 ---
 name: implementer
-model: claude-sonnet-5
+model: claude-haiku-5-5
 description: "Implementation worker for a SINGLE story, spawned by the generator (lead) as a team-mode teammate. Use as the subagent_type when the generator fans out one teammate per story: it implements test-first under strict file ownership and returns the result to the lead. It never spawns its own teammates and never invokes the evaluator — the lead owns integration and the hand-off to the evaluator."
 tools:
   - Read

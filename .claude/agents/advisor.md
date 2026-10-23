@@ -1,6 +1,6 @@
 ---
 name: advisor
-model: claude-opus-5
+model: claude-sonnet-5-5
 description: Frontier mid-run advisor. Structural re-rank / unblock / design pivot at fixed checkpoints. Read-only; never implements.
 tools:
   - Read

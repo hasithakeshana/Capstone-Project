@@ -81,6 +81,7 @@ Harness names are kept because the pipeline dispatches by name.
 | `.claude/program.md` | `### LearnLab` block added. |
 | `.claude/state/process-rules.md` | `PR-learnlab-01` to `06` appended. |
 | `.claude/settings.json` | LearnLab hook entries appended. |
+| agent model pins | implementer Haiku 5.5; generator, evaluator, code-reviewer, security-reviewer, advisor Sonnet 5.5; planner Opus — to fit the plan quota |
 | `.claude/architecture.md` | Layer Hierarchy rewritten for LearnLab layers (core → domain → repositories → services → controllers); verification commands updated. |
 | `REVIEW.md` | Encoded Policy: import hierarchy line changed to the LearnLab layers. |
 | `.github/workflows/security.yml` | sast: `semgrep ci --error` → `semgrep scan --config p/python --config p/typescript --exclude .claude --error` (+ setuptools<81). Scans project code only; harness folder `.claude` is excluded. |
