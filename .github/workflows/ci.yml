@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  tooling:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Tooling tests
+        run: uv run --python 3.12 --with pytest python -m pytest scripts/test_ac_coverage_audit.py -q
+      - name: Lint scripts
+        run: uv run --with ruff ruff check scripts/
+
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Check for backend
+        id: check
+        shell: bash
+        run: |
+          if [ -f pyproject.toml ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "backend skipped: no pyproject.toml yet"
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Install backend
+        if: steps.check.outputs.present == 'true'
+        run: |
+          uv python install 3.12
+          uv sync --python 3.12
+      - name: Ruff
+        if: steps.check.outputs.present == 'true'
+        run: uv run ruff check .
+      - name: Architecture rules
+        if: steps.check.outputs.present == 'true'
+        run: uv run lint-imports
+      - name: Tests with coverage
+        if: steps.check.outputs.present == 'true'
+        run: uv run pytest --cov=src --cov-report=xml:reports/coverage.xml
+      - name: Upload backend reports
+        if: ${{ always() && steps.check.outputs.present == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: backend-reports
+          path: reports/
+          if-no-files-found: ignore
+
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for frontend
+        id: check
+        shell: bash
+        run: |
+          if [ -f frontend/package.json ]; then
+            echo "present=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "frontend skipped: no frontend/package.json yet"
+            echo "present=false" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@v4
+        if: steps.check.outputs.present == 'true'
+        with:
+          node-version: 22
+      - name: Install frontend
+        if: steps.check.outputs.present == 'true'
+        working-directory: frontend
+        run: npm ci
+      - name: Lint
+        if: steps.check.outputs.present == 'true'
+        working-directory: frontend
+        run: npm run lint
+      - name: Tests with coverage
+        if: steps.check.outputs.present == 'true'
+        working-directory: frontend
+        run: npm test -- --coverage
+      - name: Build
+        if: steps.check.outputs.present == 'true'
+        working-directory: frontend
+        run: npm run build
+      - name: Upload frontend reports
+        if: ${{ always() && steps.check.outputs.present == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-reports
+          path: reports/
+          if-no-files-found: ignore
