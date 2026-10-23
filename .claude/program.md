@@ -33,6 +33,7 @@
   - **Coverage:** coverage runs write `reports/coverage.xml` (backend) and `reports/lcov.info` (frontend).
   - **E2E:** Playwright specs (Phase 9) end with a screenshot assertion; snapshot folders are committed.
   - **Architecture:** rules live in `pyproject.toml` `[tool.importlinter]` and `tests/architecture/`. Run `lint-imports` as part of the test gate.
+  - **Tooling config (sprint 1):** `pyproject.toml` sets pytest `testpaths = ["tests"]` and measures coverage with `--cov=src` only. `scripts/` is tooling, not app code.
 
 ## Constraints
 
