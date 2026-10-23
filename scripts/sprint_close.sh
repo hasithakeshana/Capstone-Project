@@ -133,10 +133,10 @@ check_git() {
 }
 
 run_pr_body() {
-  if node .claude/scripts/pr-body.js --require-gate > "reports/mr-sprint-$1.md" 2> reports/pr-body.err; then
+  if node .claude/scripts/pr-body.js --require-gate > "reports/pr-sprint-$1.md" 2> reports/pr-body.err; then
     return
   fi
-  rm -f "reports/mr-sprint-$1.md"
+  rm -f "reports/pr-sprint-$1.md"
   REMINDERS+=("PR body not written: the gate is not ready (see reports/pr-body.err)")
 }
 

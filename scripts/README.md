@@ -51,7 +51,7 @@ python scripts/ac_coverage_audit.py --model claude-haiku-5-5  # --model override
 |---|---|
 | `ac-coverage.md` | `sprint_close.sh` (AC table: literal `AC-NN` match) |
 | `sprint-N-summary.md` | `sprint_close.sh N` (BLOCKING, REMINDERS, metrics, commits) |
-| `mr-sprint-N.md` | `sprint_close.sh N` (PR body, if the gate is ready) |
+| `pr-sprint-N.md` | `sprint_close.sh N` (PR body, if the gate is ready) |
 | `coverage.xml`, `lcov.info` | test runs (backend and frontend) |
 | `ac-semantic-coverage.md` | `ac_coverage_audit.py` |
 
