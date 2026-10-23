@@ -81,4 +81,4 @@ Harness names are kept because the pipeline dispatches by name.
 | `.claude/program.md` | `### LearnLab` block added. |
 | `.claude/state/process-rules.md` | `PR-learnlab-01` to `06` appended. |
 | `.claude/settings.json` | LearnLab hook entries appended. |
-| `.github/workflows/security.yml` | sast: `semgrep ci --error` → `semgrep scan --config p/default --error` (+ setuptools<81). |
+| `.github/workflows/security.yml` | sast: `semgrep ci --error` → `semgrep scan --config p/python --config p/typescript --exclude .claude --error` (+ setuptools<81). Scans project code only; harness folder `.claude` is excluded. |
