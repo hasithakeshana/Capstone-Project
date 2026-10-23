@@ -11,7 +11,7 @@ Enforce the layer rules and the NFR-08 rules as tests that run in the test gate.
 
 ## Guide
 
-1. Configure import-linter in `pyproject.toml` under `[tool.importlinter]`. Layer order, from `docs/architecture.md` §2: controllers → services → repositories → domain. Core is used by controllers, services and repositories.
+1. Configure import-linter in `pyproject.toml` under `[tool.importlinter]`. Layer order, from `docs/architecture.md` → Layered Structure: controllers → services → repositories → domain. Core is used by controllers, services and repositories.
 2. Add these contracts:
    - Layers contract: controllers → services → repositories → domain.
    - Forbidden: `domain` must not import `fastapi`, `sqlalchemy`, services, repositories, controllers or core. Domain uses only the standard library.
@@ -34,14 +34,14 @@ Enforce the layer rules and the NFR-08 rules as tests that run in the test gate.
 ## Check for
 
 - Missing or incomplete contract in `pyproject.toml`.
-- A test that cannot fail. Check it against a deliberately broken import in a scratch branch, then discard the change.
+- A test that cannot fail. Prove each contract can fail using a small test fixture package under `tests/architecture/fixtures/` that contains a forbidden import. The architecture test must fail on that fixture.
 - Architecture rules that do not run in the test gate or CI.
 - An NFR-08 rule with no test.
 
 ## Tests to write
 
 - The tests listed in Guide step 4 and step 5.
-- A test that proves the import-linter contract catches a violation.
+- A test that proves each contract catches a violation, using the fixture package in `tests/architecture/fixtures/`.
 
 ## References
 

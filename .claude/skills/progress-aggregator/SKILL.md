@@ -15,10 +15,10 @@ Compute correct progress percentages and instructor band counts. Covers AC-07, A
 2. Store one completion per learner and lesson. Marking the same lesson twice must not add a second record or change progress.
 3. Completions are append-only. Do not add update or delete methods (NFR-02, DR-9).
 4. Progress % = completed lessons ÷ total lessons, as an integer percentage. Use integer arithmetic only. Never use float (NFR-01, DR-6).
-5. Rounding (floor or round) is an Open Question in `specs/progress-tracker_spec.md`. Do not pick one until it is decided.
+5. Percentages round down: percent = completed * 100 // total (integer division). Project decision; see `specs/app_spec.md` → Project Decisions.
 6. A course with no lessons shows 0% progress. This is a project decision in `specs/progress-tracker_spec.md` → Business Rules. Do not divide by zero.
 7. Bands for instructors: 0–25%, 25–50%, 50–75%, 75–100% (AC-09). Each learner counts in one band.
-8. Boundary values exactly at 25, 50 and 75 are an Open Question in `specs/instructor-workbench_spec.md`. Do not choose a band for them until decided.
+8. Bands: 0 ≤ p < 25, 25 ≤ p < 50, 50 ≤ p < 75, 75 ≤ p ≤ 100. Project decision; see `specs/app_spec.md` → Project Decisions.
 9. Instructors receive band counts only, never learner identities or individual progress (AC-09, DR-11). Learners and anonymous users are rejected (NFR-04).
 10. A learner sees only their own progress. A request for another learner's progress is rejected (NFR-08).
 
@@ -41,7 +41,8 @@ Compute correct progress percentages and instructor band counts. Covers AC-07, A
 - Learner cannot read another learner's progress: `test_nfr08_…`.
 - Progress returns an integer type: `test_nfr01_…`.
 - Course with 0 lessons → 0%: `test_ac07_…` (scenario added to AC-07).
-- Tests at boundary values 25, 50 and 75: write only after the band-boundary Open Question is decided.
+- 1 of 3 lessons → 33%: `test_ac07_…`.
+- Band boundaries: 0 → band 1, 25 → band 2, 50 → band 3, 75 → band 4, 100 → band 4: `test_ac09_…`.
 
 Tag every test as described in `tests/CLAUDE.md`.
 

@@ -46,7 +46,7 @@ Turn each Given/When/Then scenario into one AC-tagged test that fails first. Cov
 
 ## References
 
-- `docs/tdd.md`. Where its naming example differs from process rule PR-learnlab-03, the process rule applies.
+- `docs/tdd.md`.
 - `specs/test_artefacts/at-template.md`.
 - The feature specs in `specs/`.
 - `tests/CLAUDE.md`.

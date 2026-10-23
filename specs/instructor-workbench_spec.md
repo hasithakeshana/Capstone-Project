@@ -20,6 +20,7 @@ Instructors see learner progress for a course, aggregated into four progress ban
 
 - Given I am signed in as an instructor and a course has two enrolled learners, one at 10% progress and one at 60% progress, When I view progress for that course, Then the 0–25% band count is 1, the 50–75% band count is 1, and the other two band counts are 0.
 - Given I am signed in as an instructor, When I view progress for a course, Then I see a count for each of the four bands: 0–25%, 25–50%, 50–75%, and 75–100%.
+- Given a course has four learners at 25%, 50%, 75% and 100% progress, When I view progress for that course, Then the band counts are 0, 1, 1 and 2 for the four bands in order.
 - Given I am signed in as an instructor, When I view progress for a course, Then I see only aggregated band counts and no individual learner's progress. (AC-09, DR-11)
 - Given I am the instructor of a course, When I try to set or change a learner's quiz score or attempt in that course, Then the request is rejected and the score is unchanged. (NFR-08, DR-12)
 - Given I am signed in as a learner, When I request progress band counts for a course, Then the request is rejected. (NFR-04)
@@ -28,6 +29,7 @@ Instructors see learner progress for a course, aggregated into four progress ban
 ## Business Rules
 
 - The four progress bands are 0–25%, 25–50%, 50–75%, and 75–100%. (AC-09)
+- Band boundaries: 0 ≤ p < 25, 25 ≤ p < 50, 50 ≤ p < 75, 75 ≤ p ≤ 100. Project decision; doc silent. (AC-09)
 - Band counts are based on course progress, which is completed lessons divided by total lessons. (AC-07, DR-5)
 - Instructors see only aggregated band counts, never an individual learner's progress. (AC-09, DR-11)
 - Instructors cannot grade their own courses' learners. (NFR-08, DR-12)
@@ -52,4 +54,4 @@ Instructors see learner progress for a course, aggregated into four progress ban
 
 ## Open Questions
 
-- Doc silent — to be decided later: band boundary at exactly 25%, 50% and 75%.
+None
