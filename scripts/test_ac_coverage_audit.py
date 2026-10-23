@@ -58,6 +58,29 @@ def test_tool_scenarios_stops_at_the_next_heading(tmp_path: Path):
     assert aca.scenarios(spec, "AC-02") == ["Given an instructor, When they create a course, Then it is DRAFT."]
 
 
+def test_tool_scenarios_ignores_given_lines_before_the_first_heading(tmp_path: Path):
+    """Tooling: Given lines above the first AC heading belong to no AC and are not returned."""
+    spec = tmp_path / "spec.md"
+    spec.write_text("- Given a stray line\n" + SPEC, encoding="utf-8")
+    assert "Given a stray line" not in aca.scenarios(spec, "AC-01")
+
+
+def test_tool_tagged_snippets_skips_non_code_files_directories_and_node_modules(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """Tooling: only .py, .ts and .tsx files outside node_modules are searched; directories are skipped."""
+    tests = tmp_path / "tests"
+    (tests / "node_modules").mkdir(parents=True)
+    (tests / "folder.py").mkdir()
+    (tests / "notes.md").write_text("AC-01 in a note\n", encoding="utf-8")
+    (tests / "node_modules" / "x.ts").write_text("test('AC-01 vendored', () => {})\n", encoding="utf-8")
+    (tests / "ok.py").write_text('"""AC-01 (E1-S1-AC2): x."""\n', encoding="utf-8")
+    monkeypatch.setattr(aca, "ROOT", tmp_path)
+    snippets = aca.tagged_snippets("AC-01")
+    assert len(snippets) == 1
+    assert "ok.py" in snippets[0]
+
+
 def test_tool_parse_rows_reads_the_json_array_inside_prose():
     """Tooling: the judgement JSON array is found even when Claude wraps it in text."""
     answer = 'Result: [{"scenario": "S1", "status": "COVERED", "evidence": "test_ac01_x", "gap": "none"}] end'
