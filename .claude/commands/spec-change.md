@@ -13,7 +13,7 @@ Never edit code or tests in this command.
 
 1. Find the affected specs. Search `specs/app_spec.md` and `specs/*_spec.md` for the terms in the change. List each file and section.
 2. Propose the spec edit as a diff. Show the diff, then stop and wait for approval.
-3. After approval, edit the spec. Also update the affected sprint PRD in `specs/sprints/` and `specs/requirements-traceability.md`.
+3. After approval, edit the spec. Also update the affected sprint PRD in `specs/sprints/` and `specs/requirements-traceability.md`. When a decision changes, also update `specs/app_spec.md` → Project Decisions. When an invariant changes, also update `specs/design/constitution.md` (Invariants and Amendment History).
 4. List the code and tests that must be regenerated. For each one, name the AC or NFR it covers.
 5. Suggest the next step: `/implement-ac AC-NN` for a single AC, or the harness `/change` command for a story.
 
