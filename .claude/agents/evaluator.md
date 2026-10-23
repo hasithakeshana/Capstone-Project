@@ -18,6 +18,17 @@ tools:
   - mcp__plugin_playwright_playwright__browser_wait_for
   - mcp__plugin_playwright_playwright__browser_tabs
   - mcp__plugin_playwright_playwright__browser_close
+  # LearnLab addition: Playwright MCP from .mcp.json
+  - mcp__playwright__browser_navigate
+  - mcp__playwright__browser_click
+  - mcp__playwright__browser_fill_form
+  - mcp__playwright__browser_snapshot
+  - mcp__playwright__browser_take_screenshot
+  - mcp__playwright__browser_wait_for
+  - mcp__playwright__browser_evaluate
+  - mcp__playwright__browser_press_key
+  - mcp__playwright__browser_tabs
+  - mcp__playwright__browser_close
 ---
 
 # Evaluator Agent
