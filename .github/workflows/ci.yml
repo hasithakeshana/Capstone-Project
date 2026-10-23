@@ -30,10 +30,10 @@ jobs:
         id: check
         shell: bash
         run: |
-          if [ -f pyproject.toml ]; then
+          if [ -f pyproject.toml ] && grep -q '^\[project\]' pyproject.toml; then
             echo "present=true" >> "$GITHUB_OUTPUT"
           else
-            echo "backend skipped: no pyproject.toml yet"
+            echo "backend skipped: no [project] in pyproject.toml yet"
             echo "present=false" >> "$GITHUB_OUTPUT"
           fi
       - name: Install backend
