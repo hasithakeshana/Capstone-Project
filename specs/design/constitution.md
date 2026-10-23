@@ -12,12 +12,6 @@ amendment regardless of its weighted score.
 
 ## Invariants
 
-<!-- One line per invariant, each independently checkable against a diff or an
-     amendment narrative. Delete this comment once populated. Examples: -->
-
-- All schema changes use expand-contract; no destructive migration ships in the same sprint that removes the old column/field.
-- Services communicate only through their published API contracts; no service reads another service's database directly.
-- Public-facing APIs are REST/JSON only; no GraphQL or gRPC surface for external consumers.
 - INV-1 (AC-08, DR-1): A course changes state only through DRAFT → PUBLISHED → UNPUBLISHED → ARCHIVED; any other move raises InvalidCourseStateException.
 - INV-2 (NFR-08): A PUBLISHED course cannot be changed unless it goes through an unpublish transition.
 - INV-3 (AC-01, AC-04, DR-3): A learner can enroll only in a PUBLISHED course.
@@ -33,9 +27,4 @@ amendment regardless of its weighted score.
 
 ## Amendment History
 
-<!-- Append one line per sprint whenever an invariant is added, changed, or
-     removed. Never delete a line — this is the audit trail for why the
-     constitution looks the way it does. -->
-
-- Sprint 1: initial invariants established at design approval.
 - Sprint 1: initial invariants from app_spec.md

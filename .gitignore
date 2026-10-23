@@ -39,8 +39,6 @@ coverage/
 *.min.js
 *.min.css
 *.map
-*.lock
-package-lock.json
 
 # Harness state — .claude/state/ is a tracked snapshot: ratchet baselines
 # (agent-readiness/coupling/coverage/cycle), learned-rules.md, process-rules.md,

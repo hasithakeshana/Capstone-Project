@@ -3,11 +3,13 @@ set -euo pipefail
 
 echo "=== Bootstrapping dev environment ==="
 
-# Backend dependencies
-cd backend && uv sync && cd ..
+# Backend dependencies (repo root: src/, tests/)
+uv sync
 
 # Frontend dependencies
 cd frontend && npm ci && cd ..
+
+# TODO: app start command — defined in the sprint 1 design.
 
 # Code-map AST indexer deps (brownfield discovery + graph-refresh hook).
 # Python repos need none of these (stdlib ast); the wheels cover JS/JSX/TS/TSX.
