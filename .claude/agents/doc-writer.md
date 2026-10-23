@@ -33,6 +33,7 @@ Do not scan the whole repo or the full git history.
 - Update `docs/tdd.md`. Fill the AC-05 worked example with real commit hashes.
 - Update `docs/harness-integration.md`. Add one row per sprint.
 - Update `docs/knowledge-deposits.md`. Record only real, repeated mistakes and the rule, hook or skill that fixed each one.
+- If `specs/reviews/` for this sprint shows a failure that was reproduced, fixed and then passed, write one `docs/fix-loops/<date>-<short-title>.md` from the template with real commit hashes and the PR link. Never invent a loop; skip if none happened.
 
 ## Must never
 
@@ -42,5 +43,5 @@ Do not scan the whole repo or the full git history.
 
 ## Output
 
-- The updated docs.
+- The updated docs, including any new `docs/fix-loops/` file.
 - A 3-line summary of what changed.
