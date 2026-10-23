@@ -36,3 +36,8 @@
 ## Lesson
 
 Check the environment first (versions, tools on PATH, operating system differences), and only then change the configuration.
+
+## Links
+
+- Fix loop: [docs/fix-loops/2026-10-23-pr1-ci-checks.md](../fix-loops/2026-10-23-pr1-ci-checks.md)
+- PR: https://github.com/hasithakeshana/Capstone-Project/pull/1
