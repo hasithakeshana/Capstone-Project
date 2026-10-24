@@ -46,7 +46,7 @@ Goal: a running app where a learner can register, log in, browse published cours
 - **FR-28** (Seed data) The seed data contains two instructor accounts.
 - **FR-29** (Seed data) The seed data contains three learner accounts.
 - **FR-30** (Seed data) The seed data contains at least one course in each lifecycle state: DRAFT, PUBLISHED, UNPUBLISHED, and ARCHIVED.
-- **FR-31** (Run) One command starts the app locally and loads the seed data.
+- **FR-31** (Run) One command starts the app locally and loads the seed data; README.md has a Quick start section with that command and the seed accounts.
 
 ## 4. Non-Functional Requirements
 
@@ -114,7 +114,7 @@ Goal: a running app where a learner can register, log in, browse published cours
 - **FR-28** → after seeding, exactly two stored accounts have the instructor role.
 - **FR-29** → after seeding, exactly three stored accounts have the learner role.
 - **FR-30** → after seeding, the stored courses include at least one course in each of DRAFT, PUBLISHED, UNPUBLISHED, and ARCHIVED states.
-- **FR-31** → after the single run command, the app responds to requests, and the stored data contains the seed records from FR-27 to FR-30.
+- **FR-31** → after the single run command, the app responds to requests, the stored data contains the seed records from FR-27 to FR-30, and README.md has a Quick start section with that command and the seed accounts.
 - **NFR-1** → a request for an action outside the caller's role is rejected at the controller, and nothing is stored.
 - **NFR-2** → after an enrollment is stored, an edit or delete request for it is rejected, and the stored record is unchanged.
 - **NFR-3** → after a registration request, the log output contains no plain-text copy of the email.

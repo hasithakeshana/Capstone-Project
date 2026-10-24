@@ -242,6 +242,4 @@ Goal: a learner can attempt a quiz several times and see a best score, and an in
 <!-- To decide at refresh:
 - Quiz placement: where a quiz sits in a course beyond one quiz per module, and how many quizzes a module can have.
 - Partial credit: whether a question or a quiz can earn partial credit.
-- Rounding: whether integer percentages are rounded down or to the nearest integer.
-- Band boundary: which band takes a progress of exactly 25%, 50%, or 75%.
 -->

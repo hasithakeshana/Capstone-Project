@@ -171,3 +171,10 @@ The application starts locally with one command, and loads the seed data. The co
 - **Architecture — domain:** Given the codebase, When the architecture tests run, Then domain does not import services, repositories, controllers, or web or database frameworks.
 - **Architecture — one-way flow:** Given the codebase, When the architecture tests run, Then imports flow one way only: controllers → services → repositories → domain.
 - **NFR-08 tests:** Each NFR-08 rule is covered by a test: an instructor cannot grade their own course's learners; a learner cannot access another learner's progress; a published course cannot be changed without an unpublish transition.
+
+## 16. Project Decisions
+
+Decisions the project made where the capstone doc is silent.
+
+- **Rounding:** percentages round down. Percent = completed × 100 // total (integer division, no float). Applies to course progress (AC-07) and quiz scores (AC-05). Examples: 1 of 3 → 33%.
+- **Band boundaries (AC-09):** 0 ≤ p < 25, 25 ≤ p < 50, 50 ≤ p < 75, 75 ≤ p ≤ 100. A learner at 100% is in the top band.

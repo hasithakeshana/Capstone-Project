@@ -23,6 +23,8 @@ Learners mark lessons complete inside a course they are enrolled in. The system 
 - Given a course with 4 lessons and I have completed 1 of them, When I view my progress for that course, Then the progress is 25%.
 - Given a course with 4 lessons and I have completed none of them, When I view my progress for that course, Then the progress is 0%.
 - Given a course with 4 lessons and I have completed all 4 of them, When I view my progress for that course, Then the progress is 100%.
+- Given a course with 0 lessons, When I view my progress, Then it is 0%.
+- Given a course with 3 lessons and I have completed 1 of them, When I view my progress for that course, Then the progress is 33%.
 - Given a lesson completion exists, When anyone tries to edit or delete it, Then the change is rejected and the record is unchanged. (NFR-02)
 - Given I mark a lesson complete, When the request is logged, Then the log does not contain my progress or identity in plain text. (NFR-03, DR-13)
 - Given I am not enrolled in a course, When I mark one of its lessons complete, Then the request is rejected and no completion is saved.
@@ -44,6 +46,8 @@ Quiz scores in this view are added by the Quiz Engine feature in sprint 3.
 - Quiz scores are shown separately from course progress, not combined into it. (Progress user journey)
 - Learners move through modules and lessons sequentially. (Learn user journey).
 - The system computes and snapshots course progress for each learner. (Progress Tracker system function).
+- A course with no lessons shows 0% progress. (project decision; doc silent)
+- Percentages round down (integer division: x * 100 // total). Project decision; doc silent. (AC-07)
 
 ## Applicable NFRs
 
@@ -67,4 +71,4 @@ Quiz scores in this view are added by the Quiz Engine feature in sprint 3.
 
 ## Open Questions
 
-- Doc silent — to be decided later: rounding of integer percentages (floor or round).
+None

@@ -27,9 +27,9 @@ The harness also makes one group commit per completed story group (feat: impleme
 ## 3. Test Naming
 
 Every test carries its exact AC id in the form "AC-NN" so it can be found by searching for the id:
-- pytest: the function name starts with test_acNN_ (for example test_ac05_...), the test has an ac marker carrying the AC id, and the docstring starts with "AC-05:". The ac marker is registered in the project configuration file (pyproject.toml) with the description "acceptance criterion id".
-- Vitest: the describe or test title starts with "AC-05 ...".
-- Playwright: the test title starts with "AC-05 ...".
+- pytest: the function name starts with test_acNN_ (for example test_ac05_...), the test has an ac marker carrying the AC id (`@pytest.mark.ac("AC-05")`), and the docstring starts with "AC-05 (E1-S1-ACn): ..." (for example `"""AC-05 (E1-S1-ACn): a quiz is auto-graded."""`). Add the harness story id in brackets only when one exists. The ac marker is registered in the project configuration file (pyproject.toml) with the description "acceptance criterion id".
+- Vitest: the describe or test title starts with "AC-05 (E1-S1-ACn): ...".
+- Playwright: the test title starts with "AC-05 (E1-S1-ACn): ...".
 
 Tests for behaviour without an AC id use the user journey or NFR name in the same way (for example test_browse_... with "Browse:" in the docstring; test_nfr03_... with "NFR-03:" in the docstring; architecture tests test_arch_... with "Architecture:").
 
@@ -59,7 +59,7 @@ Test folders mirror src/ folders (the harness TDD gate expects a matching test f
 
 **Acceptance criterion:** Quiz supports MCQ (single correct) and TRUE / FALSE question types; quizzes are auto-graded by a deterministic rule.
 
-**Failing test (red).** A test named in the form test_ac05_..., with the ac marker set to AC-05 and a docstring starting "AC-05:", describes one scenario from the quiz engine spec. For example: Given a quiz with 4 questions and 3 answered correctly, When the attempt is submitted, Then the score is 75%. The test fails, because no grading rule exists yet.
+**Failing test (red).** A test named in the form test_ac05_..., with the ac marker set to AC-05 and a docstring starting "AC-05 (E1-S1-ACn):", describes one scenario from the quiz engine spec. For example: Given a quiz with 4 questions and 3 answered correctly, When the attempt is submitted, Then the score is 75%. The test fails, because no grading rule exists yet.
 
 **Making it pass (green).** The simplest change is a grading rule in the domain layer. It counts correct answers and turns the count into an integer percentage. It does not use floating-point math (NFR-01). The test passes.
 

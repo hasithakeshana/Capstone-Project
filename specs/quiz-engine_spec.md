@@ -24,6 +24,7 @@ Learners attempt quizzes made of MCQ (single correct answer) and TRUE / FALSE qu
 - Given a quiz with 4 questions of MCQ or TRUE / FALSE type, and I answer 3 of them correctly, When I submit the attempt, Then the score is 75%.
 - Given a quiz with 4 questions and I answer none of them correctly, When I submit the attempt, Then the score is 0%.
 - Given a quiz with 4 questions and I answer all of them correctly, When I submit the attempt, Then the score is 100%.
+- Given a quiz with 3 questions and I answer 1 of them correctly, When I submit the attempt, Then the score is 33%.
 - Given an MCQ question with one correct option, When I select the correct option, Then the question is scored as correct.
 - Given an MCQ question with one correct option, When I select any other option, Then the question is scored as incorrect.
 - Given a TRUE / FALSE question whose correct answer is TRUE, When I answer FALSE, Then the question is scored as incorrect.
@@ -52,6 +53,7 @@ Learners attempt quizzes made of MCQ (single correct answer) and TRUE / FALSE qu
 - A quiz question is either MCQ with a single correct answer or TRUE / FALSE. (AC-05)
 - Every attempt is graded automatically by a deterministic rule. (AC-05, DR-7)
 - A quiz score is an integer percentage; no floating-point calculation is used. (NFR-01, DR-6)
+- Percentages round down (integer division: x * 100 // total). Project decision; doc silent. (AC-05)
 - A learner can attempt a quiz many times, and the best score is kept. (AC-06, DR-8)
 - Each attempt is timestamped, and attempts are append-only records. (AC-06, NFR-02, DR-9)
 - Quiz scores are shown separately from course progress. (Progress Tracker)
@@ -80,6 +82,5 @@ Learners attempt quizzes made of MCQ (single correct answer) and TRUE / FALSE qu
 
 ## Open Questions
 
-- Doc silent — to be decided later: rounding of integer percentages (floor or round).
 - Doc silent — to be decided later: where a quiz sits in a course (module-end).
 - Doc silent — to be decided later: partial credit.
